@@ -1,0 +1,10 @@
+<h1>Below are the first <%= @foods.first(10).count %>  results from your search:</h1>
+
+<% @foods.first(10).each do |food| %>
+<div class="food">
+  <h2 class="description">Description: <%= food.description %></h2>
+  <h4 class="gtiupc">GTI/UPC: <%= food.gtinupc %></h4>
+  <h4 class="brand_owner">Brand Owner: <%= food.brand_owner %></h4>
+  <p class="ingredients">Ingredients: <%= food.ingredients %></p>
+</div>
+<% end%>

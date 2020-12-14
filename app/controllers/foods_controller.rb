@@ -1,7 +1,6 @@
 class FoodsController < ApplicationController
   def index
     @foods = facade(food_params[:q])
-    require 'pry'; binding.pry
   end
 
   def conn
@@ -12,7 +11,7 @@ class FoodsController < ApplicationController
 
   def json(query_data)
     response = conn.get("/fdc/v1/foods/search") do |f|
-      f.params[:query]=query_data
+      f.params[:query]=query_data#"ingredients:#{query_data}"
     end
     parse_data(response)
   end
@@ -22,8 +21,8 @@ class FoodsController < ApplicationController
   end
 
   def facade(query_data)
-    json(query_data)[:foods].map do |food|
-      Food.new
+    json(query_data)[:foods].map do |food_data|
+      Food.new(food_data)
     end
   end
 
