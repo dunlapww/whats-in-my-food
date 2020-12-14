@@ -11,7 +11,7 @@ class FoodsController < ApplicationController
 
   def json(query_data)
     response = conn.get("/fdc/v1/foods/search") do |f|
-      f.params[:query]=query_data#"ingredients:#{query_data}"
+      f.params[:query]=query_data#"ingredients:'#{query_data}'"
     end
     parse_data(response)
   end
